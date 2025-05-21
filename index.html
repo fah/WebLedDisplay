@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<header>
+    <script src="./font1.js"></script>
+    <script src="./main.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            configureCanvas();
+            const displaySystem = new LEDDisplaySystem('ledCanvas');
+            new TouchController(displaySystem.simulator);
+            displaySystem.startDemo();
+
+            // Websocket API integration example
+            /*
+            const socket = new WebSocket('wss://api.example.com/led-updates');
+            socket.onmessage = event => {
+                const data = JSON.parse(event.data);
+                displaySystem.updateDisplay(data.lines);
+            };
+            */
+
+            /*
+            // API polling example
+            async function fetchProgramData() {
+                try {
+                    const corsProxy = 'https://cors-anywhere.herokuapp.com/';
+                    const apiUrl = 'https://hacker-news.firebaseio.com/v0/item/8863.json';
+                    const response = await fetch(corsProxy + apiUrl);
+                    const textData = await response.text();
+                    
+                    // Debug logging
+                    console.log('Raw response:', textData);
+                    console.log('First character code:', textData.charCodeAt(0));
+                    
+                    // Remove any BOM or non-printable characters
+                    const cleanedText = textData.replace(/^\uFEFF/, '').trim();
+                    const data = JSON.parse(cleanedText);
+                    displaySystem.updateDisplay(data.title);
+                } catch (error) {
+                    console.error('Error details:', {
+                        message: error.message,
+                        stack: error.stack
+                    });
+                }
+            }
+
+            // Initial fetch
+            fetchProgramData();
+            
+            // Set up polling every 10 minutes (600000 milliseconds)
+            setInterval(fetchProgramData, 600000);
+            */           
+        });
+    </script>
+
+    <link href="./matrix-font.css" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'DotoBold';
+            src: url('./font/Doto/static/Doto-Bold.ttf') format('truetype');
+        }
+        .matrix-text {
+            background-color: #300000;
+            font-family: 'DotoBold', 'Doto', monospace;
+            font-size: 40px;
+            color: #ff0000ff;
+            padding-left: 15px;
+            filter: blur(0px); /* this will reduce brightness */
+            text-shadow: 2px 2px 2px 5px rgba(255,0,0,0.5); /* adding a glow */
+        }
+    </style>
+</header>
+
+<body>
+    <!-- WebGL example ( high energy consumption) -->
+    <canvas id="ledCanvas"></canvas>
+
+    <!-- Normal example ( energy saving ) -->
+    <p class="matrix-text">
+        Simple example without WebGL
+        Simple example without WebGL
+        Simple example without WebGL
+        Simple example without WebGL
+        Simple example without WebGL
+        Simple example without WebGL
+    </p>
+</body>
+
+</html>
