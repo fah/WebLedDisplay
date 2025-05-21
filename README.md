@@ -2,9 +2,16 @@
 
 This is a WebGL example to simulate any size of a LED Display.
 
+![top is WebGL, lower is just text](./docs/imgs/screenshot.png "Screenshot")
+
+
 ## Start
 
 In VisualCode or Cursor start the "Live Server" and go to http://127.0.0.1:5500/index.html
+
+## Stop Server
+
+In commandline (Shift + Apple + P or Shift + Ctrl + P) find "Stop Live Server" and execute.
 
 ## Fonts 
 
